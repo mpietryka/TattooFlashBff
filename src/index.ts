@@ -1,6 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import rateLimit from 'express-rate-limit';
 import { config } from '@/config';
 import { errorHandler } from '@/middleware/errorHandler';
 import { logger } from '@/utils/logger';
@@ -10,12 +9,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-const limiter = rateLimit({
-  windowMs: config.rateLimit.windowMs,
-  max: config.rateLimit.max,
-});
-app.use(limiter);
 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });

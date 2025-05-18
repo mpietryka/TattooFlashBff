@@ -1,22 +1,13 @@
 import { v2 as cloudinary } from 'cloudinary';
-import { config } from '@/config';
 import { logger } from '@/utils/logger';
 import { AppError } from '@/middleware/errorHandler';
+import { CloudinaryImage, CloudinaryResource } from '@/types/cloudinary';
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-export interface CloudinaryImage {
-    public_id: string;
-    url: string;
-    secure_url: string;
-    format: string;
-    width: number;
-    height: number;
-}
 
 export class CloudinaryService {
     static async getImagesFromFolder(folder: string): Promise<CloudinaryImage[]> {
@@ -39,7 +30,7 @@ export class CloudinaryService {
                 logger.warn(`No images found in folder: ${folder}`);
             }
 
-            return result.resources.map((resource: any) => ({
+            return result.resources.map((resource: CloudinaryResource) => ({
                 public_id: resource.public_id,
                 url: resource.url,
                 secure_url: resource.secure_url,
