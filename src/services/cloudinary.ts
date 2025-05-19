@@ -33,10 +33,6 @@ export class CloudinaryService {
             return result.resources.map((resource: CloudinaryResource) => ({
                 public_id: resource.public_id,
                 url: resource.url,
-                secure_url: resource.secure_url,
-                format: resource.format,
-                width: resource.width,
-                height: resource.height,
             }));
         } catch (error) {
             logger.error('Error fetching images from Cloudinary:', error);

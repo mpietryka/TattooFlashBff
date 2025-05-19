@@ -70,10 +70,6 @@ describe('CloudinaryService', () => {
       expect(result[0]).toEqual({
         public_id: mockCloudinaryResource.public_id,
         url: mockCloudinaryResource.url,
-        secure_url: mockCloudinaryResource.secure_url,
-        format: mockCloudinaryResource.format,
-        width: mockCloudinaryResource.width,
-        height: mockCloudinaryResource.height,
       });
     });
 
