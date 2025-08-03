@@ -12,8 +12,6 @@ cloudinary.config({
 export class CloudinaryService {
     static async getImagesFromFolder(folder: string): Promise<CloudinaryImage[]> {
         try {
-            logger.info(`Searching for images in folder: ${folder}`);
-
             const result = await cloudinary.search
                 .expression(`folder:${folder}/*`)
                 .sort_by('created_at', 'desc')
