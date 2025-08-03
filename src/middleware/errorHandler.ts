@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { logger } from '../utils/logger';
 
 export class AppError extends Error {
@@ -14,7 +14,9 @@ export class AppError extends Error {
 
 export const errorHandler = (
   err: Error | AppError,
+  req: Request,
   res: Response,
+  next: NextFunction
 ) => {
   if (err instanceof AppError) {
     logger.warn({
